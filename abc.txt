@@ -1,0 +1,18 @@
+import numpy as np
+from scipy.linalg import svd
+
+a = np.array([[1, 2, 3], [2, 4, 6], [2, 3, 4]])
+
+# number of rows and columns
+m, n = 3, 3
+x, y, z = svd(a)
+print("Decomposition: ", x)
+print("Inverse: ", y)
+print("Transpose: ", z)
+
+# Creating array of zeroes with same rows and column
+sigma = np.zeros((m, n))
+for i in range(min(m, n)):
+    sigma[i, i] = y[i]
+a1 = np.dot(x, np.dot(sigma, z))
+print(a1)
